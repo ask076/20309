@@ -1,0 +1,486 @@
+/* ════════════════════════════════════════════════════════════════
+   style.css — 실제 스타일
+   ════════════════════════════════════════════════════════════════
+   TODO 표시가 있는 곳만 채우면 됩니다.
+   나머지는 완성본이니 건드리지 마세요.
+
+   ⚠ 색과 크기는 직접 적지 말고 반드시 var(--이름) 으로 쓰세요.
+       ✗  color: #1c3fd6;
+       ✓  color: var(--brand);
+   ════════════════════════════════════════════════════════════════ */
+
+
+/* ═══ 0. 초기화 ▸ 완성본 ═══════════════════════════════════════ */
+
+* { box-sizing: border-box; }   /* 테두리까지 포함해서 크기를 계산 */
+
+body, h1, h2, h3, p, ul, dl, dd, figure { margin: 0; padding: 0; }
+ul { list-style: none; }
+img { display: block; max-width: 100%; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
+               "Malgun Gothic", "맑은 고딕", sans-serif;
+  font-size: var(--fs-body);
+  line-height: 1.7;
+  color: var(--ink);
+  background: var(--paper);
+}
+
+/* 모든 섹션의 가로 정렬을 담당합니다 */
+.wrap {
+  max-width: var(--maxw);
+  margin: 0 auto;              /* auto가 좌우 여백을 똑같이 나눠 가운데 정렬 */
+  padding: 0 var(--sp-3);      /* 좁은 화면에서 글자가 끝에 붙지 않게 */
+}
+
+/* 키보드 Tab으로 이동할 때 위치 표시. 절대 지우지 마세요 (6주차 검사) */
+a:focus-visible, button:focus-visible,
+input:focus-visible, textarea:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+}
+
+/* JS가 요소를 숨길 때 쓰는 클래스 */
+.is-hidden { display: none; }
+
+
+/* ═══ 1. 헤더 ═══ [3주차 2차시] ════════════════════════════════ */
+
+.site-header {
+  border-bottom: 1px solid var(--line);
+  background: var(--paper);
+  position: relative;          /* 모바일 메뉴의 기준점. 지우지 마세요 */
+}
+
+.site-header .wrap {
+  height: 68px;
+
+  /* 1) 먼저 이것만 추가하고 새로고침 */
+display: flex;
+justify-content: space-between;
+/* 3) 마지막으로 이것을 추가 */
+align-items: center;/* TODO(3주차): 로고는 왼쪽 끝, 메뉴는 오른쪽 끝에 오고
+                  둘 다 세로 가운데에 놓이게 만드세요.
+     힌트: display / align-items / justify-content 세 줄 */
+
+}
+
+.logo {
+  font-size: var(--fs-h3);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.gnb {
+  display: flex;
+  gap: var(--sp-3);/* TODO(3주차): 메뉴 항목들을 가로로 놓고 사이 간격을 --sp-3 으로
+     힌트: display 와 gap 두 줄 */
+
+}
+
+.gnb a {
+  color: var(--ink-soft);
+  text-decoration: none;
+  font-size: 0.9375rem;
+}
+.gnb a:hover { color: var(--ink); }
+
+/* 모바일 메뉴 버튼 ▸ 완성본. 평소엔 숨어 있다가 좁은 화면에서 나옵니다 */
+.menu-btn {
+  display: none;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  border-radius: var(--radius);
+  padding: 6px 10px;
+  font-size: var(--fs-small);
+  font-family: inherit;
+  cursor: pointer;
+}
+
+
+/* ═══ 2. 히어로 ═══ [3주차 3차시] ══════════════════════════════ */
+
+.hero {
+  background: var(--wall);
+  padding: var(--sp-5) 0;
+}
+
+.hero .wrap {
+    display: flex;
+  gap: var(--sp-4);
+  align-items: center;/* TODO(3주차): 글(.hero-text)과 이미지(.hero-figure)를 좌우로 나란히,
+                  세로 가운데 정렬, 사이 간격은 --sp-4
+     힌트: display / gap / align-items */
+
+}
+
+.hero-text {
+   flex: 2;/* TODO(3주차): 남는 공간을 나눠 갖게 만드세요
+     힌트: flex 한 줄 */
+
+}
+
+.hero-figure {
+    flex: 1;/* TODO(3주차): 위와 똑같이 */
+
+}
+
+.hero-label {
+  font-size: var(--fs-small);
+  color: var(--brand);
+  font-weight: 700;
+  margin-bottom: var(--sp-1);
+}
+
+.hero h1 {
+  font-size: var(--fs-hero);
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+  margin-bottom: var(--sp-2);
+}
+
+.hero p {
+  color: var(--ink-soft);
+  max-width: 34em;             /* 한 줄이 너무 길면 읽기 어려움 */
+  margin-bottom: var(--sp-3);
+}
+
+.hero-figure img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  background: var(--line);
+}
+
+
+/* ═══ 3. 버튼 ▸ 완성본 ════════════════════════════════════════ */
+
+.btn {
+  display: inline-block;       /* a 태그에 크기를 주려면 필요 */
+  padding: 12px var(--sp-3);
+  border: 1px solid var(--brand);
+  border-radius: var(--radius);
+  background: var(--brand);
+  color: var(--paper);
+  font-size: var(--fs-body);
+  font-family: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+.btn:hover { opacity: 0.85; }
+
+/* 변형은 이렇게 만듭니다. HTML에서는 class="btn btn--ghost" 처럼 둘 다 씁니다 */
+.btn--ghost { background: transparent; color: var(--brand); }
+.btn--block { display: block; width: 100%; text-align: center; }
+
+
+/* ═══ 4. 섹션 제목 ▸ 완성본 ═══════════════════════════════════ */
+
+.section { padding: var(--sp-5) 0; }
+
+.section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: var(--sp-3);
+}
+.section-head h2 { font-size: var(--fs-h2); letter-spacing: -0.02em; }
+.section-head p  { color: var(--ink-soft); font-size: var(--fs-small); }
+
+
+/* ═══ 5. 필터 칩 ▸ 완성본 ═════════════════════════════════════ */
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;             /* 좁아지면 줄바꿈 */
+  gap: var(--sp-1);
+  margin-bottom: var(--sp-3);
+}
+
+.chip {
+  padding: 7px 16px;
+  border: 1px solid var(--line);
+  border-radius: 999px;        /* 큰 값을 주면 알약 모양이 됩니다 */
+  background: var(--paper);
+  color: var(--ink-soft);
+  font-size: var(--fs-small);
+  font-family: inherit;
+  cursor: pointer;
+}
+.chip:hover { border-color: var(--ink-soft); }
+
+/* 선택된 칩. 5주차에 JS가 이 클래스를 붙였다 뗍니다.
+   .chip.is-active 는 두 클래스를 '동시에' 가진 것. 사이에 공백 없음! */
+.chip.is-active {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+}
+
+
+/* ═══ 6. 카드 목록 ═══ [3주차 3차시] ═══════════════════════════ */
+
+.card-grid {
+    display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;/* TODO(3주차): 카드를 3열 격자로 배치하고 사이 간격은 --sp-3
+     힌트: display: grid;
+           grid-template-columns: repeat( ? , 1fr);
+           gap: ? ;  */
+
+}
+
+.card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--paper);
+}
+.card:hover { border-color: var(--ink); }
+
+.card img {
+  width: 100%;
+  background: var(--line);
+  aspect-ratio: 3 / 4;    /* 가로 : 세로 비율 고정 */
+  object-fit: cover;      /* 비율이 안 맞는 부분은 잘라낸다 *//* TODO(3주차): 모든 카드 이미지의 세로 비율을 3:4로 똑같이 맞추고,
+                  비율이 안 맞는 부분은 잘라내세요.
+     힌트: aspect-ratio 와 object-fit 두 줄
+     ⚠ 이 두 줄이 없으면 카드 높이가 제각각이 되어 격자가 무너집니다.
+       완성도에 가장 큰 영향을 주는 부분입니다. */
+
+}
+
+.card-body { padding: var(--sp-2); }
+.card-cat  { font-size: var(--fs-small); color: var(--brand); margin-bottom: 4px; }
+.card h3   { font-size: var(--fs-h3); letter-spacing: -0.02em; margin-bottom: 6px; }
+.card-meta { font-size: var(--fs-small); color: var(--ink-soft); }
+
+.badge {
+  display: inline-block;
+  background: var(--highlight);
+  color: var(--ink);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: var(--radius);
+  margin-left: 6px;
+}
+
+
+/* ═══ 7. 상세 화면 ═══ [4주차 1차시] ═══════════════════════════ */
+
+.detail { padding: var(--sp-4) 0 var(--sp-5); }
+
+.detail-top {
+   display: flex;
+  gap: var(--sp-4);
+  align-items: flex-start;
+  /* TODO(4주차): 포스터와 정보를 좌우로 나란히, 위쪽 기준 정렬,
+                  사이 간격 --sp-4
+     힌트: display / gap / align-items: flex-start */
+
+}
+
+.detail-poster {
+  flex: 0 0 340px;/* TODO(4주차): 늘어나지도 줄어들지도 않는 340px 고정 폭으로
+     힌트: flex: 0 0 340px;   (또는 width 와 flex-shrink 두 줄) */
+
+}
+
+.detail-poster img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  background: var(--line);
+}
+
+.detail-info {
+   flex: 1;/* TODO(4주차): 남는 공간을 전부 쓰게 */
+
+}
+
+.detail-info h1 {
+  font-size: 2rem;
+  letter-spacing: -0.03em;
+  margin-bottom: var(--sp-2);
+}
+
+/* 정보 목록 ▸ 완성본 */
+.spec { border-top: 1px solid var(--line); margin: var(--sp-3) 0; }
+.spec div {
+  display: flex;
+  gap: var(--sp-2);
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.9375rem;
+}
+.spec dt { flex: 0 0 88px; color: var(--ink-soft); }
+.spec dd { flex: 1; }
+
+.detail-body { margin-top: var(--sp-4); max-width: 40em; }
+.detail-body h2 { font-size: var(--fs-h3); margin-bottom: var(--sp-1); }
+.detail-body p  { color: var(--ink-soft); margin-bottom: var(--sp-2); }
+
+
+/* ═══ 8. 신청 폼 ▸ 완성본 ═════════════════════════════════════ */
+
+.form-page { padding: var(--sp-4) 0 var(--sp-5); }
+.form-page > .wrap { max-width: 620px; }
+.form-page h1 { font-size: var(--fs-h2); margin-bottom: var(--sp-1); }
+.form-page > .wrap > p {
+  color: var(--ink-soft);
+  font-size: var(--fs-small);
+  margin-bottom: var(--sp-4);
+}
+
+.field { margin-bottom: var(--sp-3); }
+
+/* > 는 '바로 아래 자식만' 이라는 뜻.
+   이게 없으면 라디오 그룹 안의 label까지 세로로 쌓입니다 */
+.field > label {
+  display: block;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.req { color: var(--danger); }
+
+.field input[type="text"],
+.field input[type="tel"],
+.field input[type="email"],
+.field input[type="number"],
+.field textarea {
+  width: 100%;
+  padding: 11px 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  font-size: var(--fs-body);
+  font-family: inherit;
+  color: var(--ink);
+  background: var(--paper);
+}
+.field input:focus, .field textarea:focus { border-color: var(--brand); }
+.field textarea { resize: vertical; min-height: 96px; }
+
+.hint { font-size: var(--fs-small); color: var(--ink-soft); margin-top: 5px; }
+
+/* 오류 표시 ▸ 평소엔 숨김. 5주차에 JS가 is-show / has-error 를 붙입니다 */
+.error { display: none; font-size: var(--fs-small); color: var(--danger); margin-top: 5px; }
+.error.is-show { display: block; }
+.field.has-error input,
+.field.has-error textarea { border-color: var(--danger); }
+
+.radio-group { display: flex; flex-wrap: wrap; gap: var(--sp-2); }
+.radio-group label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.9375rem;
+  cursor: pointer;
+}
+
+.agree {
+  display: flex;
+  gap: var(--sp-1);
+  align-items: flex-start;
+  background: var(--wall);
+  padding: var(--sp-2);
+  border-radius: var(--radius);
+  font-size: 0.9375rem;
+}
+.agree input { margin-top: 5px; }
+
+
+/* ═══ 9. 완료 화면 ▸ 완성본 ═══════════════════════════════════ */
+
+.done { padding: var(--sp-5) 0; text-align: center; }
+.done .wrap { max-width: 520px; }
+.done h1 { font-size: var(--fs-h2); margin-bottom: var(--sp-1); }
+.done > .wrap > p { color: var(--ink-soft); margin-bottom: var(--sp-3); }
+
+.receipt {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: var(--sp-3);
+  text-align: left;
+  margin-bottom: var(--sp-3);
+}
+.receipt div {
+  display: flex;
+  justify-content: space-between;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.9375rem;
+}
+.receipt div:last-child { border-bottom: 0; }
+.receipt dt { color: var(--ink-soft); }
+.receipt dd { font-weight: 700; }
+
+
+/* ═══ 10. 푸터 ▸ 완성본 ═══════════════════════════════════════ */
+
+.site-footer {
+  border-top: 1px solid var(--line);
+  padding: var(--sp-3) 0;
+  color: var(--ink-soft);
+  font-size: var(--fs-small);
+}
+
+
+/* ════════════════════════════════════════════════════════════════
+   11. 반응형 ═══ [3주차 4차시]
+   ════════════════════════════════════════════════════════════════
+   ⚠ 이 블록은 반드시 파일 맨 아래에 있어야 합니다.
+     위로 올리면 아래 코드에 덮어써져서 동작하지 않습니다.
+
+   ⚠ 브레이크포인트는 768px 하나만 씁니다. 더 만들지 마세요.
+
+   반응형의 핵심은 두 가지뿐입니다.
+     ① 가로로 놓인 것을 세로로 바꾼다   → flex-direction: column
+     ② 여러 열을 한 열로 바꾼다          → grid-template-columns: 1fr
+   ════════════════════════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+
+    .detail-poster {
+    flex: none;          /* ← 이게 없으면 340px이 그대로 유지됩니다 */
+    width: 100%;
+    max-width: 320px;
+  }
+/* 변수 값을 바꾸면 그 변수를 쓰는 곳이 한꺼번에 작아집니다 ▸ 완성본 */
+  :root { --fs-hero: 1.875rem; --sp-5: 40px; }
+
+  /* 모바일 메뉴 ▸ 완성본. 버튼이 나타나고 메뉴는 숨었다가 펼쳐집니다 */
+  .menu-btn { display: block; }
+  .gnb {
+    display: none;
+    position: absolute;
+    top: 68px; left: 0; right: 0;
+    flex-direction: column;
+    gap: 0;
+    background: var(--paper);
+    border-bottom: 1px solid var(--line);
+    padding: var(--sp-2) var(--sp-3);
+  }
+  .gnb.is-open { display: flex; }
+ /* ① 가로 → 세로 */
+  .hero .wrap,
+  .detail-top { flex-direction: column; }
+
+  /* ② 3열 → 1열 */
+  .card-grid { grid-template-columns: 1fr; }
+
+  /* ③ 포스터 고정 풀기 (4주차에 확인) */
+  .detail-poster {
+    flex: none;
+    width: 100%;
+    max-width: 320px;}
+
+}
